@@ -46,11 +46,10 @@ base_teste = gerador_teste.flow_from_directory('dataset/test_set',
                                                            batch_size = 32,
                                                            class_mode = 'binary')
 ##training the model created above
-classificador.fit_generator(base_treinamento, steps_per_epoch = 4000,   ## o numero de epocas neste caso
-                            epochs = 5, validation_data = base_teste,   ## é o numero de imagens no dataset
-                            validation_steps = 1000)                    ## treino, validação o numero de teste 
-                                                                        ## pode ser dividido para diminuir o 
-                                                                        ## tempo de treinamento, diminui precisão
+classificador.fit_generator(base_treinamento, steps_per_epoch = 4000,   ## step per epoch and validation steps
+                            epochs = 5, validation_data = base_teste,   ## are the number of images from training
+                            validation_steps = 1000)                    ## and testing sets
+                                                                        
 ## saving the neural network structure and weights
 classificador_json = classificador.to_json()
 with open('classificador_cat_dog.json', 'w') as json_file:
