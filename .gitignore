@@ -1,0 +1,15 @@
+*.dll
+__MACOSX/
+conda-meta/
+dataset/
+DLLs/
+include/
+Lib/
+Library/
+libs/
+Scripts/
+tcl/
+Tools/
+*.pdb
+python.exe
+pythonw.exe
