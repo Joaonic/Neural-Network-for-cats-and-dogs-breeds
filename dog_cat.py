@@ -57,26 +57,32 @@ with open('classificador_cat_dog.json', 'w') as json_file:
     json_file.write(classificador_json)
 classificador.save_weights('classificador_cat_dog.h5')
 
-# loading the structure
+#load the neural network structure
 
 arquivo = open('classificador_cat_dog.json', 'r')
 estrutura_rede = arquivo.read()
 arquivo.close()
 
-# loading the weights
+#load the neural network weights
 
 classificador = model_from_json(estrutura_rede)
 classificador.load_weights('classificador_cat_dog.h5')
 
-# loading the image to be classified
+#load the image to be classified
 img = input('Digite o caminho até a imagem a se analisar\n')
 
-#preprocess the image to the standards of the neural network
-image = image.load_img(img,
+#preprocess the image to the network standards
+imagem_teste = image.load_img(img,
                               target_size = (64,64))
-image = image.img_to_array(image)
-image /= 255
-image = np.expand_dims(image, axis = 0)
-previsao = classificador.predict(image)
-previsao = (previsao > 0.5)
-print(previsao)
+imagem_teste = image.img_to_array(imagem_teste)
+imagem_teste /= 255
+imagem_teste = np.expand_dims(imagem_teste, axis = 0)
+previsao = classificador.predict(imagem_teste)
+
+#as a binary classification with 1 == cat and 0 == dog
+if previsao > 0.5:
+    print ('cat')
+if previsao < 0.5:
+    print('dog')
+if previsao == 0.5:
+    print('undefined')
