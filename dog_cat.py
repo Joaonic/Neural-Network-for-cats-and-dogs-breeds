@@ -69,7 +69,7 @@ classificador = model_from_json(estrutura_rede)
 classificador.load_weights('classificador_cat_dog.h5')
 
 #load the image to be classified
-img = input('Digite o caminho até a imagem a se analisar\n')
+img = "PATH TO THE IMAGE"
 
 #preprocess the image to the network standards
 imagem_teste = image.load_img(img,
